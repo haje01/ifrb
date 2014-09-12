@@ -22,4 +22,4 @@
 
 창문(Window)
 ----
-창문은 :ref:`opening` 의 한 종류로 :ref:`room` 에 접해 있습니다. 방문과 유사하나 크기가 작고 대개 빛이 통과하는 :ref:`material` 을 가집니다.
+창문은 :ref:`opening` 의 한 종류로 :ref:`room` 에 접해 있습니다. 방문과 유사하나 크기가 작고 대개 빛이 통과하는 :ref:`transparent` 을 가집니다.

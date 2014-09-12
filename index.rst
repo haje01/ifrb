@@ -14,8 +14,8 @@ IFRB는 **Interactive Fiction Rule Book** 의 약자로 인터랙티브 픽션�
 인터랙티브 픽션(Interactive Fiction, 이하 IF)는 가장 적은 리소스로 많은 컨텐츠를 담을 수 있는 소설과 유사한 미디어의 한 형태입니다. 문자라는 최소한의 심볼을 가지고 구현되기에 그것은 다양한 형태(웹, 데스크탑/모바일 App 등)로 즐길 수 있습니다. 가급적 많은 디바이스를 지원하기 위해서 이 문서에서는 공통의 규칙만을 서술하고, 실제 구현은 각 구현체에 맡기는 방법을 선택하였습니다.
 
 
-내용
-----
+객체 소개
+---------
 
 .. toctree::
    :maxdepth: 2
@@ -24,15 +24,24 @@ IFRB는 **Interactive Fiction Rule Book** 의 약자로 인터랙티브 픽션�
    thing
    character
    space
-   move
    opening
    etc
 
 
-인덱스와 테이블
-===============
+구현 규칙
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   description
+   script
+   move
+   visibility
+
+
+색인
+====
 
 * :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
