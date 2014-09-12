@@ -7,14 +7,14 @@
 물체 관련
 ---------
 
-물체를 이동
+move thing
     특정 물체를 지정 공간으로 이동한다.
 
-물체를 감춘다(보인다)
+hide(show) thing
     특정 물체를 보이지 않게(보이게) 한다.
 
-라이트를 끈다(켠다)
+light on(off)
     :ref:`light` 을 끈다(켠다).
 
-스위치를 끈다(켠다)
-    :ref:`switch` 를 끈다(켠다).
+switch on(off)
+    :ref:`switch` 를 켠다(끈다).
