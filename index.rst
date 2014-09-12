@@ -25,7 +25,9 @@ IFRB는 ``Interactive Fiction Rule Book`` 의 약자로 인터랙티브 픽션�
    character
    space
    move
+   opening
    luminance
+   etc
 
 
 인덱스와 테이블
