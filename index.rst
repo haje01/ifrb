@@ -42,7 +42,7 @@ IFRB는 *Interactive Fiction Rule Book* 의 약자로 인터랙티브 픽션을 
    description
    script
    move
-   visibility
+   state
 
 
 색인
