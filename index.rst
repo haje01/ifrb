@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-IFRB 문서에 온 것을 환영한다!
+IFRB에 온 것을 환영한다!
 ===================================
 
 IFRB는 *Interactive Fiction Rule Book* 의 약자로 인터랙티브 픽션을 위한
