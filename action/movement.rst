@@ -1,6 +1,6 @@
-.. _move: 
+.. _movement: 
 
-이동(Move)
+이동(Movement)
 ==============
 
 물체가 하나의 공간에서 다른 공간으로 :ref:`location` 를 변경하는 것을
