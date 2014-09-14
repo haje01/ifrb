@@ -19,20 +19,34 @@ IFRB는 *Interactive Fiction Rule Book* 의 약자로 인터랙티브 픽션을 
 서술하고, 실제 구현은 각 구현체에 맡기는 방법을 선택하였다.
 
 
-객체
-----
+기본 객체들
+-----------
+
+.. toctree::
+   :maxdepth: 2
+
+   thing
+   character
+   region
+   space
+   opening
+
+
+고급 객체들
+-----------
 
 .. toctree::
    :maxdepth: 2
 
    object
-   thing
-   character
-   space
-   opening
+   spatial
+   script
+   state
+   type
 
-플레이
-------
+
+플레이의 구성
+-------------
 :ref:`play` 는 크게 묘사를 읽고 행위를 하는 것으로 구성된다. 
 
 .. toctree::
@@ -40,16 +54,6 @@ IFRB는 *Interactive Fiction Rule Book* 의 약자로 인터랙티브 픽션을 
 
    description
    action
-
-구현
-----
-
-.. toctree::
-   :maxdepth: 2
-
-   script
-   state
-
 
 기타
 ----

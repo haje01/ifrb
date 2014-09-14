@@ -13,11 +13,12 @@
 볼 수 있는(Visible)
 -------------------
 
-볼 수 있는 것은 :ref:`state` 의 한 종류인데, :ref:`character` 가 대상 :ref:`object`
+볼 수 있는 것은 :ref:`state` 의 한 종류인데, :ref:`character` 가 대상 :ref:`spatial`
 를 볼 수 있는 지를 나타낸다.  다음과 같이 결정된다.
 
-#. 캐릭터가 위치한 :ref:`spacecon` 의 :ref:`luminance` 가 깜깜하면 불가.
-#. 캐릭터와 대상 객체 사이에 불투명한 공간이 있으면 불가.
+#. 캐릭터가 위치한 :ref:`space` 의 :ref:`luminance` 가 깜깜하면 불가.
+#. 대상 물체의 :ref:`luminance` 가 깜깜하면 불가.
+#. 캐릭터와 대상 객체 사이에 :ref:`transparent` 가 없는 물체가 있으면 불가.
 #. 이외의 경우 성립.
 
 .. note::
@@ -31,7 +32,7 @@
 -----------------------
 
 닿을 수 있는 것은 :ref:`state` 의 한 종류인데, :ref:`character` 가 대상
-:ref:`object` 에 닿을 수 있는 지를 나타낸다. 다음과 같이 결정된다.
+:ref:`object` 에 접촉할 수 있는 지를 나타낸다. 다음과 같이 결정된다.
 
 #. 캐릭터와 대상 객체의 :ref:`location` 가 다르면 불가.
 #. 캐릭터와 대상 객체가 :ref:`visible` 상태가 아니면 불가.

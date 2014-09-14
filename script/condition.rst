@@ -32,7 +32,7 @@ call by cpu
 물체 관련
 -----------
 switch on
-    :ref:`switch` 이 켜졌는가?
+    :ref:`plugin-switch` 이 켜졌는가?
 
 light on
     :ref:`plugin-light` 이 켜졌는가?
