@@ -35,7 +35,7 @@ switch on
     :ref:`switch` 이 켜졌는가?
 
 light on
-    :ref:`light` 이 켜졌는가?
+    :ref:`plugin-light` 이 켜졌는가?
 
 thing space dark
     :ref:`thing` 의 공간이 깜깜한가?

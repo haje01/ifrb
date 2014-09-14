@@ -24,13 +24,14 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 조도(Luminance)
 ---------------
 
-조도는 :ref:`spacecon` 의 밝기를 나타내는데, 다음과 같은 규칙으로 결정된다.
+조도는 :ref:`object` 의 밝기를 나타내는데, 다음과 같은 규칙으로 결정된다.
 
-#. :ref:`space` 은 기본 조도를 가질 수 있다.
-#. :ref:`spacecon` 의 자식 물체에 :ref:`light` 이 있으면 그것을 따른다.
-#. 하나 이상의 조도가 있으면 가장 밝은 것을 따른다.
 #. 밝음(Bright), 보통(Normal), 어두움(Dim), 깜깜함(Pitch-dark)의 4단계로
    나뉜다.
+#. :ref:`thing` 는 자신이 속한 :ref:`location` 의 조도를 고려한다.
+#. :ref:`plugin-light` 이 있는 객체는 그것의 조도를 고려한다.
+#. :ref:`spacecon` 는 :ref:`children` 의 조도를 고려한다.
+#. 여러 개의 조도 중 가장 밝은 것을 선택한다.
 
 .. _direction:
 
@@ -42,7 +43,7 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 
 위치 부모(Locational Parent)
 ----------------------------
-어떤 물체가 공간적으로 속해있는 객체를 그 물체의 위치 객체라고 한다.
+어떤 물체가 공간적으로 속해있는 객체를 그 물체의 *위치 부모* 라고 한다.
 
 .. _super:
 

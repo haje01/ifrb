@@ -15,7 +15,7 @@ hide(show) thing
     특정 물체를 보이지 않게(보이게) 한다.
 
 light on(off)
-    :ref:`light` 을 끈다(켠다).
+    :ref:`plugin-light` 을 끈다(켠다).
 
 switch on(off)
-    :ref:`switch` 을 켠다(끈다).
+    :ref:`plugin-switch` 을 켠다(끈다).
