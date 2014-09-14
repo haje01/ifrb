@@ -24,12 +24,17 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 조도(Luminance)
 ---------------
 
+.. warning::
+
+   아직 개념 정리가 필요하다.
+
 조도는 :ref:`object` 의 밝기를 나타내는데, 다음과 같은 규칙으로 결정된다.
 
-#. 밝음(Bright), 보통(Normal), 어두움(Dim), 깜깜함(Pitch-dark)의 4단계로
+#. 미정의(Undefined), 밝음(Bright), 어두움(Dim), 깜깜함(Pitch-dark)의 4단계로
    나뉜다.
 #. :ref:`thing` 는 자신이 속한 :ref:`location` 의 조도를 고려한다.
-#. :ref:`plugin-light` 이 있는 객체는 그것의 조도를 고려한다.
+#. :ref:`structure` 과 불투명한 컨테이너는 내부 조도와 내부 조도를 가진다.
+#. :ref:`plugin-light` 이 있는 물체는 그것의 조도를 고려한다.
 #. :ref:`spacecon` 는 :ref:`children` 의 조도를 고려한다.
 #. 여러 개의 조도 중 가장 밝은 것을 선택한다.
 

@@ -1,4 +1,4 @@
-.. _container:
+.. _plugin-container:
 
 컨테이너(Container) 플러그인
 ============================
