@@ -3,12 +3,12 @@
 구멍(Opening)
 =============
 
-구멍은 :ref:`object` 의 한 종류로, 두 공간을 이어주는 중요한 요소이다.
+구멍은 :ref:`spatial` 의 한 종류로, 비어 있어서 두 :ref:`spatial` 을 이어준다.
 
 **특징**
 
-#. 구멍은 A/B 두 물체가 하나의 객체를 이룬다.
-#. A/B는 각각 연결된 두 공간을 위치로 가진다.
+#. 구멍은 A/B 두 객체가 하나의 객체를 이룬다.
+#. A/B는 각각 연결된 두 :ref:`spatial` 을 :ref:`location` 으로 가진다.
 #. A로 들어가면 B로 :ref:`movement` 하고, B로 들어가면 A로 이동한다.
 
 .. note::
@@ -16,14 +16,14 @@
 
 .. _door:
 
-방문(Door)
+문(Door)
 ----------
-방문은 :ref:`opening` 의 한 종류로 :ref:`room` 에 접해 있다. :ref:`space` 을
-이동할 수 있는 통로이다.
+문은 :ref:`opening` 의 한 종류로, :ref:`character` 가 서서 :ref:`spatial` 을 이동할 수
+있는 통로이다.
 
 .. _window:
 
 창문(Window)
 ------------
-창문은 :ref:`opening` 의 한 종류로 :ref:`room` 에 접해 있다. 방문과 유사하나
-크기가 작고 대개 빛이 통과하는 :ref:`transparent` 을 가진다.
+창문은 :ref:`opening` 의 한 종류로, :ref:`door` 과 유사하나 크기가 작고 대개 빛이
+통과하는 :ref:`transparent` 을 가진다.

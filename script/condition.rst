@@ -38,13 +38,16 @@ light on
     :ref:`plugin-light` 이 켜졌는가?
 
 thing space dark
-    :ref:`thing` 의 공간이 깜깜한가?
+    :ref:`thing` 의 :ref:`space` 이 깜깜한가?
+
+region space dark
+    :ref:`region` 의 :ref:`space` 이 깜깜한가?
 
 thing covered by
-    특정 공간으로 감싸지면 참 
+    특정 :ref:`spatial` 의 :ref:`space` 으로 감싸지면 참 
 
-thing at
-    특정 공간에 정확히 위치할 때만 참
+thing location is
+    특정 :ref:`space` 에 정확히 위치할 때만 참
 
 
 플레이어 관련
