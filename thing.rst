@@ -19,7 +19,7 @@
 
 :ref:`thing` 가 빛을 투과할 수 있는지 여부.
 
-:ref:`type-boolean` 이며, 기본값은 참이다.
+:ref:`type-boolean` 이며, 기본값은 거짓이다.
 
 .. _part:
 

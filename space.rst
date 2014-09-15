@@ -7,7 +7,8 @@
 
 **특징**
 
-#. 공간에는 :ref:`children` 가 있다.
+#. 공간은 단독으로 있지 못하고, :ref:`regional` 혹은 :ref:`plugin-container` 안에
+   존재할 수 있다.
 #. :ref:`thing` 는 현재 공간에서 다른 공간으로 이동이 가능하다.
 #. 공간 그 자체는 이동할 수 없다.
 #. 공간은 :ref:`luminance` 를 가진다.

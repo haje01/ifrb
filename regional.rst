@@ -1,4 +1,4 @@
-.. _region:
+.. _regional:
 
 지역적 객체(Regional)
 =====================
@@ -17,7 +17,7 @@
 
 구역(Area)
 ----------
-구역은 :ref:`region` 의 한 종류로, 가장 큰 지역이다.
+구역은 :ref:`regional` 의 한 종류로, 가장 큰 지역이다.
 
 **특징**
 
@@ -29,13 +29,14 @@
 건물(Structure)
 ---------------
 
-건물은 :ref:`region` 의 한 종류로, 주로 다수의 방을 그룹짓고, 그것을 구역에서
+건물은 :ref:`regional` 의 한 종류로, 주로 다수의 방을 그룹짓고, 그것을 구역에서
 :ref:`description` 하기 위해 사용된다.
 
 **특징**
 
 #. 건물은 :ref:`area` 공간의 자식으로만 존재할 수 있다.
 #. 건물의 :ref:`space` 은 다른 건물이나 :ref:`room` 을 자식 공간으로 가질 수 있다.
+#. 건물의 :ref:`space` 는 :ref:`spatial` 을 직접 가질수 없다.
 
 
 .. _room:
@@ -43,14 +44,14 @@
 방(Room)
 --------
 
-방은 :ref:`region` 의 한 종류로, IF의 가장 흔한 공간이다.
+방은 :ref:`regional` 의 한 종류로, IF의 가장 흔한 공간이다.
 
 **특징**
 
 #. 방은 속한 지역없이 독자적으로 존재할 수 있다. 
-#. 방의 :ref:`space` 은 다른 :ref:`region` 을 자식으로 가질 수 없다.
+#. 방의 :ref:`space` 은 다른 :ref:`regional` 을 자식으로 가질 수 없다.
 #. 방의 :ref:`space` 는 :ref:`direction` 별로 :ref:`door` 을 가질 수 있고, 이것을 통해서 다른
-   방 또는 :ref:`region` 으로 :ref:`movement` 한다.
+   방 또는 :ref:`regional` 으로 :ref:`movement` 한다.
 
 .. note:
    구역으로 나가는 방문을 출구, 구역에서 들어오는 방문을 입구라고 한다.

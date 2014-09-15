@@ -43,3 +43,8 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 -------------------
 파트가 되는 객체에서 보았을 때 그것들이 이루어 내는 상위의 물체.
 
+.. _lowcommonloc:
+
+최저 공통 위치(Lowest Common Location)
+--------------------------------------
+두 :ref:`spatial` 이 공유하는 가장 작은 :ref:`location`

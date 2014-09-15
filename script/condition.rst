@@ -41,7 +41,7 @@ thing space dark
     :ref:`thing` 의 :ref:`space` 이 깜깜한가?
 
 region space dark
-    :ref:`region` 의 :ref:`space` 이 깜깜한가?
+    :ref:`regional` 의 :ref:`space` 이 깜깜한가?
 
 thing covered by
     특정 :ref:`spatial` 의 :ref:`space` 으로 감싸지면 참 

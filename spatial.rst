@@ -10,8 +10,8 @@
 
 위치(Location)
 --------------
-:ref:`spatial` 는 다른 :ref:`region` 혹은 :ref:`thing` 의
-:ref:`plugin-container` 에 소속될 수 있으며, 이 경우 그것을 **위치** 로 가진다.
+:ref:`spatial` 는 :ref:`space` 에 소속될 수 있으며, 이 경우 그 공간을 가지는
+:ref:`spatial` 를 **위치** 라 한다.
 
 꼭 필요하지는 않으며, :ref:`spatial` 를 가리킨다.
 
@@ -40,7 +40,7 @@
 결정된 값은 :ref:`type-brightness` 이다.
 
 비어 있음(Hollow)
-----------------
+-----------------
 
 :ref:`type-boolean` 으로, 속이 비어 있는 :ref:`space` 나 :ref:`opening` 의 경우
 참, 아니면 거짓이다.
