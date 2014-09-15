@@ -24,5 +24,5 @@ hide(show) [thing]
     발생.
 
 [thing] switch on(off)
-    물체의 스위치를 끈다(켠다). 대상 물체에 :ref:`plutin-switch` 가 없으면 예외
+    물체의 스위치를 끈다(켠다). 대상 물체에 :ref:`plugin-switch` 가 없으면 예외
     발생.

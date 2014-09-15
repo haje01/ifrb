@@ -26,7 +26,7 @@
 파트(Part)
 ----------
 :ref:`thing` 를 구성하는 하나 이상의 하위 :ref:`thing` 를 파트로 가진다. 파트가
-되는 객체는 이 객체를 :ref:`entirety` 로 가진다.
+되는 객체는 이 객체를 :ref:`composite` 로 가진다.
 
 하나 이상의 :ref:`thing` 을 가리킬 수 있다.
 

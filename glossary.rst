@@ -37,14 +37,20 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 -----------------------
 객체 지향에서 말하는 상속 개념에서 어떤 객체가 상속을 받은 모 객체.
 
-.. _entirety:
+.. _composite:
 
-상위 물체(Entirety)
--------------------
+복합 물체(Composite)
+--------------------
 파트가 되는 객체에서 보았을 때 그것들이 이루어 내는 상위의 물체.
+
+.. _asclocation:
+
+상위 위치(Ascendant Location)
+-----------------------------
+자신의 위치를 포함하는 위치들을 일컷는 말.
 
 .. _lowcommonloc:
 
 최저 공통 위치(Lowest Common Location)
 --------------------------------------
-두 :ref:`spatial` 이 공유하는 가장 작은 :ref:`location`
+두 :ref:`spatial` 이 공유하는 가장 작은 :ref:`asclocation`.

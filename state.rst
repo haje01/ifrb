@@ -39,7 +39,7 @@
 
 #. 캐릭터와 대상 물체가 :ref:`transmittable` 상태가 아니면 불가.
 #. 캐릭터 혹은 대상 물체의 :ref:`luminance` 가 깜깜하면(Pitch-dark) 불가.
-#. 이외의 경우 성립.
+#. 이외는 가능.
 
 결정된 값은 :ref:`type-boolean` 이다.
 

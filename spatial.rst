@@ -15,6 +15,10 @@
 
 꼭 필요하지는 않으며, :ref:`spatial` 를 가리킨다.
 
+.. note::
+  위치는 계층적으로 구성되는 경우가 많다. 자신의 위치를 포함하는 위치들을
+  **상위위치** 라고 부른다.
+
 .. _boundary:
 
 경계(Boundary)
@@ -37,7 +41,7 @@
 #. :ref:`space` 은 :ref:`children` 의 조도를 고려한다.
 #. 고려 대상 조도들 중 가장 밝은 것을 선택한다.
 
-결정된 값은 :ref:`type-brightness` 이다.
+값은 :ref:`type-brightness` 이다.
 
 비어 있음(Hollow)
 -----------------

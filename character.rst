@@ -11,11 +11,11 @@
 NPC(Non-Playable Character)
 ---------------------------
 
-:ref:`character` 의 한 종류로, NPC는 유저가 플레이할 수 없는 캐릭터를 말한다.
+:ref:`character` 의 한 종류로, 유저가 플레이할 수 없는 캐릭터를 말한다.
 
 
 .. _pc:
 
 PC(Playable Character)
 ----------------------
-:ref:`character` 의 한 종류로, 플레이어는 유저가 플레이할 수 있는 캐릭터를 말한다.
+:ref:`character` 의 한 종류로, 유저가 플레이할 수 있는 캐릭터를 말한다.
