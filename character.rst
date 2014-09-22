@@ -6,6 +6,9 @@
 캐릭터는 :ref:`thing` 의 한 종류로 인간형 생명체를 말한다. 유저가 플레이할 수
 있는지 여부에 따라 NPC 또는 플레이어로 나뉜다.
 
+.. seealso::
+   :ref:`diagram-obj`
+
 .. _npc:
 
 NPC(Non-Playable Character)

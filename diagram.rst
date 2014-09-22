@@ -1,7 +1,9 @@
 다이어그램(Diagram)
 ===================
 
-객체들
-------
+.. _diagram-obj:
+
+객체 도해
+---------
 
 .. image:: images/classes.png

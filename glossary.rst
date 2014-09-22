@@ -54,3 +54,15 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 최저 공통 위치(Lowest Common Location)
 --------------------------------------
 두 :ref:`spatial` 이 공유하는 가장 작은 :ref:`asclocation`.
+
+.. _spaceparent:
+
+공간의 부모 객체(Spatial Parent of Space)
+-----------------------------------------
+공간이 소속된 :ref:`spatial` 를 말한다.
+
+.. _spacechild:
+
+공간의 자식 객체(Spatial Child of Space)
+----------------------------------------
+공간이 소유하는 :ref:`spatial` 를 말한다.

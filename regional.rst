@@ -6,6 +6,9 @@
 지역적 객체는 :ref:`spatial` 의 한 종류로, :ref:`scenario` 의 배경이 되는
 지역을 정의하기 위해 사용된다.
 
+.. seealso::
+   :ref:`diagram-obj`
+
 **특징**
 
 #. 지역적 객체에는 내부 :ref:`space` 을 가진다.
@@ -34,9 +37,9 @@
 
 **특징**
 
-#. 건물은 :ref:`area` 공간의 자식으로만 존재할 수 있다.
-#. 건물의 :ref:`space` 은 다른 건물이나 :ref:`room` 을 자식 공간으로 가질 수 있다.
-#. 건물의 :ref:`space` 는 :ref:`spatial` 을 직접 가질수 없다.
+#. 건물은 :ref:`area` :ref:`space` 의 자식으로만 존재할 수 있다.
+#. 건물의 공간은 다른 건물이나 :ref:`room` 을 자식 공간으로 가질 수 있다.
+#. 건물의 공간은 :ref:`thing` 를 직접 가질수 없다.
 
 
 .. _room:
@@ -48,9 +51,9 @@
 
 **특징**
 
-#. 방은 속한 지역없이 독자적으로 존재할 수 있다. 
+#. 방은 속한 지역적 객체없이 독자적으로 존재할 수 있다. 
 #. 방의 :ref:`space` 은 다른 :ref:`regional` 을 자식으로 가질 수 없다.
-#. 방의 :ref:`space` 는 :ref:`direction` 별로 :ref:`door` 을 가질 수 있고, 이것을 통해서 다른
+#. 방의 공간은 :ref:`direction` 별로 :ref:`door` 을 가질 수 있고, 이것을 통해서 다른
    방 또는 :ref:`regional` 으로 :ref:`movement` 한다.
 
 .. note:
