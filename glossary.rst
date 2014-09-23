@@ -67,6 +67,6 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 
 .. _innerspace:
 
-내부 공간(Outer Space)
+내부 공간(Inner Space)
 ----------------------
-:ref:`space` 안, 혹은 물체 내부의(:ref:`plugin-container` 을 통한) :ref:`space` 을 말한다.
+:ref:`space` 혹은 물체 내부의(:ref:`plugin-container` 을 통한) :ref:`space` 의 안을 말한다.
