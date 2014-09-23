@@ -17,13 +17,21 @@ IF를 진행하기 위한 대본으로, 문학의 그것과는 달리 사실상 
 
 스토리(Story)
 -------------
-IF의 :ref:`play` 결과로 만들어진 상태를 칭한다. 문학의 그것과는 달리 플레이하는 동안 계속 변한다.
+IF의 :ref:`play` 결과로 만들어진 상태를 칭한다. 문학의 그것과는 달리 플레이하는
+동안 계속 변한다.
 
 .. _play:
 
 플레이(Play)
 ------------
 IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
+
+.. _map:
+
+지도(Map)
+---------
+:ref:`play` 시 위치를 참고하고, 세계관에 몰읿할 수 있도록 하는 목적. 실제
+지도처럼 정교하지는 않다. :ref:`spatial` 의 위치 와 크기, 연결 정보가 표시된다.
 
 .. _direction:
 
@@ -69,4 +77,5 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 
 내부 공간(Inner Space)
 ----------------------
-:ref:`space` 혹은 물체 내부의(:ref:`plugin-container` 을 통한) :ref:`space` 의 안을 말한다.
+:ref:`space` 혹은 물체 내부의(:ref:`plugin-container` 을 통한) :ref:`space` 의
+안을 말한다.
