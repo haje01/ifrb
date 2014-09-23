@@ -43,23 +43,21 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 --------------------
 파트가 되는 객체에서 보았을 때 그것들이 이루어 내는 상위의 물체.
 
-.. _asclocation:
+.. _ascendant:
 
-상위 위치(Ascendant Location)
------------------------------
-자신의 위치를 포함하는 위치들을 일컷는 말.
+조상(Ascendant)
+---------------
+:ref:`spatial` 가 자신을 포함하는 모든 상위 :ref:`parent` 를 가르키는 말.
 
-.. _lowcommonloc:
+후예(Descendant)
+----------------
+:ref:`space` 가 직/간접 자식을 포함하는 모든 :ref:`children` 을 가르키는 말.
 
-최저 공통 위치(Lowest Common Location)
---------------------------------------
-두 :ref:`spatial` 이 공유하는 가장 작은 :ref:`asclocation`.
+.. _commonasc:
 
-.. _spaceparent:
-
-공간의 부모 객체(Spatial Parent of Space)
------------------------------------------
-공간이 소속된 :ref:`spatial` 를 말한다.
+공통 조상(Common Ascendant)
+------------------------------------
+두 :ref:`spatial` 이 공유하는 :ref:`ascendant`.
 
 .. _outerspace:
 
@@ -71,4 +69,4 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 
 내부 공간(Outer Space)
 ----------------------
-:ref:`regional` 혹은 물체 내부의(:ref:`plugin-container` 을 통한) :ref:`space` 을 말한다.
+:ref:`space` 안, 혹은 물체 내부의(:ref:`plugin-container` 을 통한) :ref:`space` 을 말한다.

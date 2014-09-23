@@ -16,14 +16,14 @@
 :ref:`state` 의 한 종류로, 두 :ref:`spatial` 사이에서 빛이 전송 가능한지
 나타낸다. 다음과 같이 결정된다.
 
-#. 둘 다 물체이고 같은 :ref:`location` 에 있으면 가능.
-#. 어느 한쪽이 물체인데 :ref:`transparent` 가 없고 :ref:`opencontainer`
+#. 둘 다 물체이고 같은 :ref:`parent` 에 있으면 가능.
+#. 어느 한쪽이 물체인데, :ref:`transparent` 가 없고 :ref:`open`
    상태도 아닌 컨테이너 안에 있으면 불가.
-#. 둘 다 물체이고 각 :ref:`location` 가 서로 다른 :ref:`room` 일때,
-   두 방이 :ref:`door` 으로 연결되어 있지 않거나 문이 :ref:`opendoor` 상태가 아니면
+#. 둘 다 물체이고 각 :ref:`parent` 가 서로 다른 :ref:`room` 일때,
+   두 방이 :ref:`door` 으로 연결되어 있지 않거나 문이 :ref:`open` 상태가 아니면
    불가.
-#. 둘 다 물체이고 한 :ref:`location` 는 :ref:`area` 다른 위치는
-   :ref:`room` 일때, 그 방이 그 구역에 연결되어 있지 않거나 :ref:`opendoor` 상태가
+#. 둘 다 물체이고 한 :ref:`parent` 는 :ref:`space` 다른 부모는
+   :ref:`room` 일때, 그 방이 그 공간에 연결되어 있지 않거나 :ref:`open` 상태가
    아니면 불가.
 #. 이외는 가능.
 
@@ -55,6 +55,6 @@
 있는지 나타낸다.  다음과 같이 결정된다.
 
 #. 캐릭터와 대상 객체가 :ref:`visible` 상태가 아니면 불가.
-#. 같은 :ref:`lowcommonloc` 가 없거나 :ref:`room` 보다 큰 것이면 불가.
+#. :ref:`room` 으로 막혀있지 않은 :ref:`commonasc` 이 없으면 불가.
 #. 물체가 :ref:`opencontainer` 상태가 아닌 컨테이너 안에 있으면 불가.
 #. 이외는 가능.

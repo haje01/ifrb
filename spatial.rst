@@ -9,18 +9,16 @@
 
 *다음과 같은 속성이 있다.*
 
-.. _location:
+.. _parent:
 
-위치(Location)
+부모(Parent)
 --------------
-:ref:`spatial` 는 :ref:`space` 에 소속될 수 있으며, 이 경우 그
-:ref:`spaceparent` 를 **위치** 라 한다.
+:ref:`spatial` 가 다른 공간적 객체에 속하면 그것을 **부모** 라고 한다.
+
+.. seealso::
+   :ref:`diagram-obj` 에서 Spatial 간의 Parent 집합 관계를 보라.
 
 꼭 필요하지는 않으며, :ref:`spatial` 를 가리킨다.
-
-.. note::
-  위치는 계층적으로 구성되는 경우가 많다. 자신의 위치를 포함하는 위치들을
-  **상위위치** 라고 부른다.
 
 .. _boundary:
 
@@ -38,16 +36,12 @@
 
 조도는 :ref:`spatial` 의 밝기를 나타내는데, 다음과 같은 규칙으로 결정된다.
 
-#. 물체는 자신이 속한 :ref:`location` 의 조도를 고려한다.
-#. 물체는 :ref:`part` 가 있는 경우 그것의 조도를 고려한다.
+#. :ref:`spatial` 는 자신의 :ref:`parent` 의 조도를 고려한다.
+#. :ref:`thing` 는 :ref:`parts` 가 있는 경우 그것의 조도를 고려한다.
 #. 물체는 :ref:`plugin-light` 이 있는 경우 그것의 조도를 고려한다.
+#. 물체는 :ref:`plugin-container` 이 있는 경고 :ref:`transparent` 가 참인 경우
+   :ref:`children` 의 조도를 고려한다.
 #. :ref:`space` 은 :ref:`children` 의 조도를 고려한다.
 #. 고려 대상 조도들 중 가장 밝은 것을 선택한다.
 
 값은 :ref:`type-brightness` 이다.
-
-비어 있음(Hollow)
------------------
-
-:ref:`type-boolean` 으로, 속이 비어 있는 :ref:`space` 나 :ref:`opening` 의 경우
-참, 아니면 거짓이다.

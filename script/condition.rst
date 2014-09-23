@@ -36,14 +36,14 @@ call by cpu
     :ref:`spatial` 가 깜깜한 곳에 있는가?
 
 
-지역 관련
+공간 관련
 ---------
 
-[regional] space dark
-    :ref:`regional` 의 :ref:`space` 이 깜깜한가?
+[space] space dark
+    :ref:`space` 이 깜깜한가?
 
-[regional] contains 
-    :ref:`regional` 가 :ref:`spatial` 을 가지고 있는가?
+[space] contains [spatial]
+    :ref:`space` 이 :ref:`spatial` 을 가지고 있는가?
 
 
 물체 관련
@@ -57,8 +57,8 @@ call by cpu
 [thing] covered by [spatial]
     물체가 특정 :ref:`spatial` 로 감싸지는가?
 
-[thing] location is [spatial]
-    물체가 특정 :ref:`spatial` 에 정확히 :ref:`location` 하는가?
+[thing] parent is [spatial]
+    물체가 특정 :ref:`spatial` 을 부모로 가지는가?
 
 [thing] composed by [thing]
     물체가 특정 :ref:`thing` 을 :ref:`part` 로 가지는가?
@@ -68,7 +68,7 @@ call by cpu
 
 
 캐릭터 관련
--------------
+-----------
 [character] visible [thing]
     플레이어가 특정 :ref:`thing` 을 볼 수 있는가?
 

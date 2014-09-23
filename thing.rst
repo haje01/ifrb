@@ -52,6 +52,9 @@
 .. toctree::
    :maxdepth: 2
 
-   thing/plugin
+   plugin/switch
+   plugin/light
+   plugin/container
+   plugin/opening
 
 물체는 하나 이상의 플러그인을 가질 수 있다.
