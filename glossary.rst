@@ -61,8 +61,14 @@ IF에서 유저가 :ref:`description` 을 읽고 명령을 내리는 것.
 -----------------------------------------
 공간이 소속된 :ref:`spatial` 를 말한다.
 
-.. _spacechild:
+.. _outerspace:
 
-공간의 자식 객체(Spatial Child of Space)
-----------------------------------------
-공간이 소유하는 :ref:`spatial` 를 말한다.
+외부 공간(Outer Space)
+----------------------
+:ref:`spatial` 가 속한 :ref:`space` 을 말한다.
+
+.. _innerspace:
+
+내부 공간(Outer Space)
+----------------------
+:ref:`regional` 혹은 물체 내부의(:ref:`plugin-container` 을 통한) :ref:`space` 을 말한다.

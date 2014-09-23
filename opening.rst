@@ -6,7 +6,7 @@
 구멍은 :ref:`spatial` 의 한 종류로, 비어 있어서 두 :ref:`spatial` 을 이어준다.
 
 .. seealso::
-   :ref:`diagram-obj`
+   :ref:`diagram-obj` 에서 Opening 를 보라.
 
 **특징**
 

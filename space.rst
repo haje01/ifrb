@@ -6,7 +6,7 @@
 공간은 :ref:`spatial` 의 한 종류로, 비어 있어서 물체가 들어갈 수 있다.
 
 .. seealso::
-   :ref:`diagram-obj`
+   :ref:`diagram-obj` 의 Space 를 보라.
 
 **특징**
 
@@ -19,14 +19,14 @@
 
 *다음과 같은 속성이 있다.*
 
-.. _children:
+.. _spacechild:
 
-자식 객체(Children)
+공간의 자식 객체(Spatial Child of Space)
 -------------------
-공간에 속하는 하나 이상의 :ref:`spatial` 를 :ref:`spacechild` 라고 한다. 자식
-객체는 이 공간의 부모 객체를 :ref:`location` 으로 가진다.
+공간에 속하는 하나 이상의 :ref:`spatial` 를 그 **공간의 자식 객체** 라고 한다.
+공간의 자식 객체는 이 공간을 :ref:`outerspace` 로, 이 :ref:`spaceparent` 를
+:ref:`location` 으로 가진다.
 
 .. seealso::
-   :ref:`diagram-obj`
-
-.. _cover:
+   :ref:`diagram-obj` 에서 Spatial 간의 Location 집합 관계, 그리고 Spatial 에서
+   Space 로의 OuterSpace 집합 관계를 보라.

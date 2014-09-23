@@ -24,7 +24,11 @@
 
 컨테이너(Container) 플러그인
 ============================
-물체 안에 공간을 추가하는 플러그인. 다른 물체를 담을 수 있게 해준다.
+물체 안에 빈 공간을 추가하는 플러그인. 다른 물체를 담을 수 있게 해준다.
+:ref:`space` 를 :ref:`innerspace` 으로 가진다.
+
+.. seealso::
+   :ref:`diagram-obj` 에서 Conainer 에서 Space 로의 InnerSpace 관계를 보라.
 
 :ref:`space` 을 가진다.
 

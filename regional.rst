@@ -7,7 +7,7 @@
 지역을 정의하기 위해 사용된다.
 
 .. seealso::
-   :ref:`diagram-obj`
+   :ref:`diagram-obj` 에서 Regional 을 보라
 
 **특징**
 
@@ -22,6 +22,9 @@
 ----------
 구역은 :ref:`regional` 의 한 종류로, 가장 큰 지역이다.
 
+.. seealso::
+   :ref:`diagram-obj` 에서 Arial 을 보라.
+
 **특징**
 
 #. 한 구역에서 다른 구역, 또는 :ref:`room` 으로 :ref:`movement` 할 수 있다.
@@ -34,6 +37,9 @@
 
 건물은 :ref:`regional` 의 한 종류로, 주로 다수의 방을 그룹짓고, 그것을 구역에서
 :ref:`description` 하기 위해 사용된다.
+
+.. seealso::
+   :ref:`diagram-obj` 에서 Structure 를 보라.
 
 **특징**
 
@@ -48,6 +54,9 @@
 --------
 
 방은 :ref:`regional` 의 한 종류로, IF의 가장 흔한 공간이다.
+
+.. seealso::
+   :ref:`diagram-obj` 에서 Room 을 보라.
 
 **특징**
 

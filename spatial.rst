@@ -5,7 +5,7 @@
 공간적 객체는 :ref:`object` 의 한 종류로, 공간을 차지하는 객체를 정의하기 위해 사용된다.
 
 .. seealso::
-   :ref:`diagram-obj`
+   :ref:`diagram-obj` 에서 Spatial 을 보라.
 
 *다음과 같은 속성이 있다.*
 

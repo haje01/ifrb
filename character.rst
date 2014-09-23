@@ -7,7 +7,7 @@
 있는지 여부에 따라 NPC 또는 플레이어로 나뉜다.
 
 .. seealso::
-   :ref:`diagram-obj`
+   :ref:`diagram-obj` 에서 Character 를 보라.
 
 .. _npc:
 
