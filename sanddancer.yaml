@@ -1,8 +1,6 @@
-
-title: {ko: 샌드 댄서, en: Sand-dancer}
-subtitle: 사막의 모래위에서 나를 찾는 모험
-
-bookinfo:
+info:
+    title: {ko: 샌드 댄서, en: Sand-dancer}
+    subtitle: 사막의 모래위에서 나를 찾는 모험
     author: 아론 리드
     coverart: images/cover.jpg
     desc: "그것은 당신의 {Truck:이} 이런 날 밤에 고장나고, 깜깜한 뉴맥시코의 사막을 헤메게 될 것이라는 것을 알았다. 그러나 다른 어떤 것들도 이 밤에 대해서 알지 못했다. 어떤 것들도..."
@@ -11,27 +9,26 @@ bookinfo:
     subbanner: 사막의 모래 위에서 나를 찾는 모험
 
 init:
+    player: Knock
     withspaces: InitiallyDark
     do:
         darken:
 
 funcs:
     InitiallyDark:
-        return:
-            and:
-                - not the-space-is MiddleOfNowhere
-                - not the-space-is Backtracking
-                - not the-space-is CrumblingConcrete
-                - not the-space-is StagingArea
-                - not the-space-is BaseOfTheTower
+        and:
+            - not the-space-is MiddleOfNowhere
+            - not the-space-is Backtracking
+            - not the-space-is CrumblingConcrete
+            - not the-space-is StagingArea
+            - not the-space-is BaseOfTheTower
 
     HandledStagedAreaThings:
-        return:
-            and:
-                - the-thing-is-not-held
-                - the-thing-is-visible
-                - the-thing-is-haneled
-                - the-thing-is-in: StagingArea
+        and:
+            - the-thing-is-not-held
+            - the-thing-is-visible
+            - the-thing-is-haneled
+            - the-thing-is-in: StagingArea
 
     UpdateStagingAreaObjectLighting:
         if: player-is-in StagingArea
@@ -71,7 +68,7 @@ funcs:
         -
             if: LitByHeadlights
             then:
-                "당신의 흐린 {headlights:는} "
+                "당신의 흐린 {Headlights:는} "
             else:
                 "당신의 {Flashlight:는} "
         - "북쪽의 콘크리트 건물까지 겨우 닿고 있다. 그 사이에는 "
@@ -80,34 +77,30 @@ funcs:
     - "모래와 창백한 산쑥 수풀만이 보이고 있다."
 
     LitBrightly:
-        return:
-            and:
-            - player-space-is-in TowerVicinity
-            - thing-switch-on EmergencyLight
+        and:
+        - player-space-is-in TowerVicinity
+        - thing-switch-on EmergencyLight
 
     LitByHeadlights:
-        return:
-            and:
-            - not LitBrightly
-            - WithinRangeOfHeadlights
-            - thing-switch-on Headlights
+        and:
+        - not LitBrightly
+        - WithinRangeOfHeadlights
+        - thing-switch-on Headlights
 
     WithinRangeOfHeadlights:
-        return:
-            or:
-            - the-space-is MiddleOfNowhere
-            - the-space-is Backtracking
-            - the-space-is CrumblingConcrete
+        or:
+        - the-space-is MiddleOfNowhere
+        - the-space-is Backtracking
+        - the-space-is CrumblingConcrete
 
     EffectivelyDark:
-        return:
-            or:
-                and:
-                    - the-space-is StagingArea
-                    - object-has-flag StagingArea dim
-                and:
-                    - the-space-is-dark
-                    - the-space-has-no-light
+        or:
+            and:
+                - the-space-is StagingArea
+                - object-has-flag StagingArea dim
+            and:
+                - the-space-is-dark
+                - the-space-has-no-light
 
 verbs:
     Throw:
@@ -222,7 +215,7 @@ things:
                         if: player-space-is StagingArea
                         then: "당신이 볼 수 있는 것은 발 근처에 있는 {metaldesk} 뿐이다."
                     - off
-                    - "엄지손가락이 뜨거워져 당신은 {lighter:를} 꺼뜨렸다."
+                    - "엄지손가락이 뜨거워져 당신은 {Lighter:를} 꺼뜨렸다."
             Wallet:
                 name: 지갑
                 takable:
@@ -274,7 +267,7 @@ things:
                         -
                             if: not player-has Lighter
                             then:
-                            - "당신은 주머니를 만져보았지만 {lighter}는 없다."
+                            - "당신은 주머니를 만져보았지만 {Lighter}는 없다."
                             - stop
                         - "당신은 담배 한 개비를 꺼내어 불을 붙였다. 여러 생각이 당신의 머릿속으로 굴러 들어왔다."
                         - decreaseobjectcount: Cigarettes
@@ -293,7 +286,7 @@ things:
                         -
                             if: object-count-compare Cigarettes = 0
                             then: 이것이 당신의 마지막 담배였다.
-                            else: "당신은 {cigarettes.count}개의 {cigarettes:을} 가지고 있다."
+                            else: "당신은 {Cigarettes.count}개의 {Cigarettes:을} 가지고 있다."
 
 spaces:
     TowerVicinity:
@@ -340,7 +333,7 @@ spaces:
                                             read: 철제 책상을 만지다.
                                             do:
                                                 - unhide:
-                                                - "당신은 책상의 모서리부터 더듬어 나가다가 {drawer:이} 있다는 것을 알았다."
+                                                - "당신은 책상의 모서리부터 더듬어 나가다가 {Drawer:이} 있다는 것을 알았다."
                                                 - undescribed:
                                 part:
                                     Drawer:
@@ -368,15 +361,12 @@ spaces:
                                     then:
                                         "{Truck}의 앞 유리를 통해서 작은 {Lizard:이} 급하게 선인장에 매달리는 것이 보인다."
                                     else:
-                                        "갈색의 {Lizard:이} 선인장에 매달려 있다.갈색의 {Lizard:이} 선인장에 매달려 있다."
+                                        "갈색의 {Lizard:이} 선인장에 매달려 있다."
                                 desc:
                                     onebyone:
-                                        do:
-                                            "그 녀석은 당신이 자기의 선인장을 망쳐버려서 꽤 화가 나 있는 것 같다. 할머니가 저 작은 녀석들을 뭐라고 말했더라? 더 이상 생각이 나지 않는다."
-                                        do:
-                                            "그래, 기억난다. 할머니는 저녀석을 '샌드댄서(Sand-dancer)'라고 불렀다. 작은 샌드댄서는 아직도 화가 나있는 것 같다."
-                                        do:
-                                            "작은 샌드댄서는 가늘고 긴 눈으로 당신을 바라보고 있다."
+                                        - do: "그 녀석은 당신이 자기의 선인장을 망쳐버려서 꽤 화가 나 있는 것 같다. 할머니가 저 작은 녀석들을 뭐라고 말했더라? 더 이상 생각이 나지 않는다."
+                                        - do: "그래, 기억난다. 할머니는 저녀석을 '샌드댄서(Sand-dancer)'라고 불렀다. 작은 샌드댄서는 아직도 화가 나있는 것 같다."
+                                        - do:"작은 샌드댄서는 가늘고 긴 눈으로 당신을 바라보고 있다."
                             Saguaro:
                                 name: 사와로 선인장
                                 desc: 그 선인장은 끄떡없이 서있다.
@@ -401,8 +391,8 @@ spaces:
 
                                 transparent:
                                 opening:
-                                    openmsg: "{truck}의 문은 삐걱거리는 소리를 내며 열렸다."
-                                    closemsg: "{truck}의 문은 쾅 하는 소리를 내며 닫혔다."
+                                    openmsg: "{Truck}의 문은 삐걱거리는 소리를 내며 열렸다."
+                                    closemsg: "{Truck}의 문은 쾅 하는 소리를 내며 닫혔다."
                                 container:
                                     enterable:
                                     things:
@@ -462,7 +452,7 @@ spaces:
                         -
                             if: LitByHeadlights
                             then:
-                                "{CrackedGlass:가} 당신 차의 {headlights}에 의해 희미하게 빛나고 있다."
+                                "{CrackedGlass:가} 당신 차의 {Headlights}에 의해 희미하게 빛나고 있다."
                             else:
                                 if: LitByFlashLight
                                 then: "당신의 손전등 불빛에 죽은 것 같은 적막함이 비춰졌다."
