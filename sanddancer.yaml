@@ -1,0 +1,514 @@
+
+title: {ko: 샌드 댄서, en: Sand-dancer}
+subtitle: 사막의 모래위에서 나를 찾는 모험
+
+bookinfo:
+    author: 아론 리드
+    coverart: images/cover.jpg
+    desc: "그것은 당신의 {Truck:이} 이런 날 밤에 고장나고, 깜깜한 뉴맥시코의 사막을 헤메게 될 것이라는 것을 알았다. 그러나 다른 어떤 것들도 이 밤에 대해서 알지 못했다. 어떤 것들도..."
+    beforebanner: "그렇지만 너무 늦었다. 당신은 충돌하고, 충돌하고, 또 충돌한다..."
+    banner: 샌 드 댄 서
+    subbanner: 사막의 모래 위에서 나를 찾는 모험
+
+init:
+    withspaces: InitiallyDark
+    do:
+        darken:
+
+funcs:
+    InitiallyDark:
+        return:
+            and:
+                - not the-space-is MiddleOfNowhere
+                - not the-space-is Backtracking
+                - not the-space-is CrumblingConcrete
+                - not the-space-is StagingArea
+                - not the-space-is BaseOfTheTower
+
+    HandledStagedAreaThings:
+        return:
+            and:
+                - the-thing-is-not-held
+                - the-thing-is-visible
+                - the-thing-is-haneled
+                - the-thing-is-in: StagingArea
+
+    UpdateStagingAreaObjectLighting:
+        if: player-is-in StagingArea
+        then:
+            if: StagingArea EffectivelyDark
+            then:
+                # 오브젝트들을 보이지 않게
+                -
+                    with: MetalDesk
+                    do:
+                        undescribed:
+                - hide: HoleInTheFloor
+                -
+                    withthings: HandledStagedAreaThings
+                    do:
+                        undescribed:
+            else:
+                # 오브젝트들을 밝힘
+                -
+                    with: MetalDesk
+                    do:
+                        - unhide:
+                        - described:
+                - unhide: HoleInTheFloor
+                -
+                    withthings: HandledStagedAreaThings
+                    do:
+                        described:
+
+    ExplainLightingCondition:
+    -
+        if:
+            or:
+            - LitByHeadlights
+            - LitByFlashLight
+        then:
+        -
+            if: LitByHeadlights
+            then:
+                "당신의 흐린 {headlights:는} "
+            else:
+                "당신의 {Flashlight:는} "
+        - "북쪽의 콘크리트 건물까지 겨우 닿고 있다. 그 사이에는 "
+        else:
+            "건물의 어스름한 빛을 통해서 "
+    - "모래와 창백한 산쑥 수풀만이 보이고 있다."
+
+    LitBrightly:
+        return:
+            and:
+            - player-space-is-in TowerVicinity
+            - thing-switch-on EmergencyLight
+
+    LitByHeadlights:
+        return:
+            and:
+            - not LitBrightly
+            - WithinRangeOfHeadlights
+            - thing-switch-on Headlights
+
+    WithinRangeOfHeadlights:
+        return:
+            or:
+            - the-space-is MiddleOfNowhere
+            - the-space-is Backtracking
+            - the-space-is CrumblingConcrete
+
+    EffectivelyDark:
+        return:
+            or:
+                and:
+                    - the-space-is StagingArea
+                    - object-has-flag StagingArea dim
+                and:
+                    - the-space-is-dark
+                    - the-space-has-no-light
+
+verbs:
+    Throw:
+        name: 던지다
+        command:
+            pattern: "Throw/{_this_}/CrackedGlass"
+            read: "{_this_:을} {CrackedGlass}에 던지다"
+            onlyif: player-is-in CrumblingConcrete
+            do:
+                - moveto: StagingArea
+                - handled:
+                -
+                    if: not thing-is-opened CrackedGlass
+                    then:
+                        - open: CrackedGlass
+                        - "{_this_:는} 유리창을 산산조각 내고 날라들어 갔다."
+                        -
+                            with: CrackedGlass
+                            do:
+                                name: {ko: 빈 창틀, en: Empty Glasses}
+                    else:
+                        "{_this_:는} {CrackedGlass:을} 지나서 날라들어 갔다."
+                - undescribed:
+
+things:
+    Drawer:
+        name: 서랍
+        container:
+            things:
+                Flashlight:
+                    name: 손전등
+                    desc:
+                        if: thing-switch-on Flashlight
+                        then: "괜찮은 빔을 쏘아주는 손전등. 동작해서 정말 다행이다."
+                        else: "꺼진 상태로는 그냥 무거운 금속일 뿐이다."
+                    takable:
+                        takemsg:
+                            if: player-space-is StagingArea
+                            then:
+                            - "와, 이건 괜찮은 {flashlight}이다. 당신은 그것을 집으며 갑자기 마음이 놓였고, "
+                            -
+                                if: EffectivelyDark
+                                then: "스위치를 찾을 때까지 그것을 손에서 돌렸다."
+                                else: "그것을 만지작 거렸다."
+                            else: "당신은 {flashlight:을} 다시 주웠다."
+                    switch:
+                        beforeon:
+                            if: player-space-is StagingArea
+                            then:
+                                - unsetobjectflag StagingArea dim
+                                - UpdateStagingAreaObjectLighting
+                        afteron:
+                            lighten:
+                            if:
+                                and:
+                                    - player-space-is StagingArea
+                                    - StagingArea EffectivelyDark
+                            then:
+                            - "주위가 밝아지면서 비로서 보이기 시작했다."
+                            - look:
+                        afteroff:
+                            if: StagingArea EffectivelyDark
+                            then:
+                                - setobjectflag: StagingArea dim
+                                - UpdateStagingAreaObjectLighting
+
+    GrandmaStories:
+        name: 할머니의 이야기
+        verbs:
+            Brood:
+                name: 생각하다
+                command:
+                    pattern: "Brood/{_this_}"
+                    read: "{_this_}에 대해 생각하다."
+                    do:
+                    - '"어린 나크야, 땅 위를 배회하는 검은 영혼들이 있단다." 할머니는 당신을 꼭 안고 머리카락을 문지르면서, 그렇게 말씀하곤 하셨다. "땅 위를 배회하는 검은 영혼들이 있지. 그러나 너는 혼자가 아니란다. 오, 아니야 내가 여기 있잖니. (그녀는 당신 머리에 키스하고 당신은 할머니의 등을 꼭 안았다.) 그러나 너를 지켜봐 주는 다른 이들도 있단다. 너에게는 세 마리의 동물 수호자들이 있는데, 너를 항상 지켜보는 영혼들이란다. 오, 너는 무엇이 최선인지 그들에게만 의존할 수는 없어. 나크야 그걸 명심해야 해. 그렇지만 네가 도움이 필요할 때, 그들이 올 것이고, 그리고 세상의 더 나쁜 것들로부터 너를 보호해줄거야."'
+                    - newpara:
+                    - "어머니는 아이의 머리를 새로운 종류의 허튼소리로 채운다며 할머니에게 고함을 치곤 했다. 할머니는 중서부의 백인 침례교도 가정에서 자랐지만, 당신이 태어날 때 쯤부터 날개 달린 옷을 입고, 팬플룻을 불기 시작했다고 한다. 그녀는 북미 원주민을 사위로 갖게 된 것을 아주 기뻐한 것 같았으며, 어머니가 아버지를 떠났을 때 정말로 화가 난 것 같았다. 어쨌건, 당신이 생각하기에, 할머니의 얘기들 대부분은 허튼소리이다. 그렇지만 그것 중 일부는 아직 당신 머리에 남아있다. 어두울 때면 당신은 당신의 영적 동물들이 세상 어딘가에 정말 있다면, 도대체 당신을 찾기까지 왜 그렇게 오래 걸리는지 궁금해진다."
+    ShitJob:
+        name: 열악한 직업
+        verbs:
+            Brood:
+                name: 생각하다
+                command:
+                    pattern: "Brood/{_this}"
+                    read: "{_this_}에 대해 생각하다"
+                    do:
+                    - "주자(Juza)는 371번 도로를 술에 취해 냄새를 풍기고 미래를 위한 어떤 계획도 없는 듯 가로지른다. 번쩍이는 차들은 시간당 140킬로를 넘는 속도로 바람을 가르며 지나가다가, 오직 기름을 넣거나 방향을 묻기 위해 이따금 멈춘다. 음식이나 보석, 그리고 담요와 싸구려 티셔츠를 파는 가판대에 멈추는 사람은 없다. 적어도 뭔가를 사는 사람은 아무도 없다."
+                    - newpara:
+                    - '빅-지미는 당신이 오로 오스트(Oro Oeste)에 산다는 얘기를 듣고 머리를 가로저었다. "젊은 친구, 정말 멀구먼." 그는 쇠골을 긁기 위해 럼버재킷을 열면서 말했다. "후주(Hoo-zuh)에 거처를 마련하는 게 좋아. 리틀-지미는 그 도로 너머에 있는 트레일러에 거의 무료로 살 수 있도록 마련해줄 거야."'
+                    - "거의 무료라. 그렇겠지, 주자에 이사하는 엄청나게 추운 날 당신이 겪게되는 바로 그런 정도의 비용이다. 하지만 다른 측면에서, 그것은 오션을 만나기 전의 얘기다. 지금은 오로 오스트로 돌아가는 길은 매일매일 점점 멀게만 느껴진다."
+    Knock:
+        name: 나크
+        desc: 당신은 자신의 모습에 대해서 알고 싶지는 않다.
+        container:
+            things:
+            DenimJacket:
+                name: 데님 재킷
+                wearable:
+            Lighter:
+                name: 라이터
+                takable:
+                switch:
+                    beforeon:
+                        if: not EffectivelyDark
+                        then: "당신은 그것을 쳐서 열었다가 닫기를 몇 번 반복했다. 오랜 습관이다."
+                    afteron:
+                    -
+                        if: EffectivelyDark
+                        then: "그렇지만, 그 빛은 어둠속에서 희미하고 작은 것이었다."
+                    -
+                        if: player-space-is StagingArea
+                        then: "당신이 볼 수 있는 것은 발 근처에 있는 {metaldesk} 뿐이다."
+                    - off
+                    - "엄지손가락이 뜨거워져 당신은 {lighter:를} 꺼뜨렸다."
+            Wallet:
+                name: 지갑
+                takable:
+                verbs:
+                    Throw:
+                container:
+                    things:
+                    DriverLicense:
+                        name: 운전면허증
+                        desc: "고속도로 순찰대가 당신을 길가에 세우면, 그들은 빗지 않아서 정신없는 머리카락, 황인종 느낌이 나는 이름(나카이비토 모랠)과 피부(사실은 썬탠한 것에 가까운), 당신의 생일(겨우 십팔 년 전이다) 그리고 원주민 등록증(이미 만기 된)을 보고서, 당신이 테러를 일삼는 원주민 환경 활동가이거나, 국경을 넘나드는 마약 판매상, 또는 비행을 일삼는 고등학교 중퇴자(사실 다 틀렸다. 마지막 것 빼고는)로 여긴다. 그 외에 당신을 길가에 세우는 것은 맥주를 사주면서 당신 아버지에 대해 얘길 하고자 하는 지미 케이 뿐인 데, 기분은 좀 이상하지만 범칙금 티켓을 받는 것보다는 낫다."
+                    Receipt:
+                        name: 영수증
+                        desc:
+                        - "'빅-지미' 가게에서 받은 영수증이다."
+                        -
+                            if: not thing-is-in ShitJob EmotionalBaggage
+                            then:
+                                - movethingto: ShitJob EmotionalBaggage
+                                - newpara:
+                                - "이것은 당신의 열악한 직업에 대한 {EmotionalBaggage:이} 나게했다."
+                    EmotionalBaggage:
+                        name: 우울한 기억들
+                        opening:
+                            init:
+                                - open:
+                                - fixopenclose:
+                        container:
+
+    Cigarettes:
+        name: 담배
+        init:
+            setobjectcount: Cigarettes 6
+        desc:
+            if: object-count-compare Cigarettes > 0
+            then: "끊으려고 노력하고 있지만, 지금은 한 대 정도 괜찮겠지. 당신은 {cigarettes.count}개의 담배를 가지고 있다."
+            else: "당신은 모두 다 피워버렸다."
+        takable:
+        verbs:
+            Smoke:
+                name: 피우다
+                command:
+                    pattern: "Smoke/{_this_}"
+                    read: "{_this_:을} 피우다"
+                    onlyif:
+                        and:
+                            - player-has Cigarettes
+                            - object-count-compare Cigarettes > 0
+                    do:
+                        -
+                            if: not player-has Lighter
+                            then:
+                            - "당신은 주머니를 만져보았지만 {lighter}는 없다."
+                            - stop
+                        - "당신은 담배 한 개비를 꺼내어 불을 붙였다. 여러 생각이 당신의 머릿속으로 굴러 들어왔다."
+                        - decreaseobjectcount: Cigarettes
+                        - newpara:
+                        - "그래, 당신은 여전히 이곳에 고립되어있다. "
+                        -
+                            if: LitBrightly
+                            then: "당신은 드디어 이곳을 좀 더 밝게 만들었다."
+                            else:
+                            -
+                                if: LitByHeadlights
+                                then: 헤드라이트 불빛 바깥은 칠흙같이 어둡다.
+                                else: 이곳은 당신이 기억할 수 있는 어떤 곳보다도 어둡다.
+                        - newpara:
+                        - "그리고 당신은 아직도 담배를 끊지 못했다."
+                        -
+                            if: object-count-compare Cigarettes = 0
+                            then: 이것이 당신의 마지막 담배였다.
+                            else: "당신은 {cigarettes.count}개의 {cigarettes:을} 가지고 있다."
+
+spaces:
+    TowerVicinity:
+        name: 타워 지역
+        spaces:
+            AroundTheTower:
+                name: 탑 근처
+                rooms:
+                    StagingArea:
+                        name: 대기실
+                        init:
+                            setobjectflag: dim
+                        desc:
+                            if:
+                                and:
+                                - LitByFlashLight
+                                - LitBrightly
+                            then: "희미한 빛살이 당신의 헤드라이트로부터 빈 창틀을 통해서 스며들어오지만, 내부는 거의 알아볼 수 없다."
+                            else: "이곳은 몇 년 동안이나 방치되었던 것이 틀림없다. 차가운 밤바람이 지붕에 난 구멍을 통해서 들어오고 있고, 모든 것들은 모래와 곰팡이 더미로 뒤덮혀 있다. {BoardedUpDoor}의 옆에 {CrackedGlass:가} 보인다."
+                        things:
+                            HoleInTheFloor:
+                                name: 바닥의 구멍
+                                init:
+                                    hide:
+                                desc: "바닥은 한쪽 모서리가 반쯤 부서져 있는데, {Cobweb:이} 쳐진 십자형 철근이 드러나 있다."
+                                opening:
+                                    init:
+                                        - open:
+                                        - fixopenclose:
+                                container:
+                                    things:
+                                        Cobweb:
+                                            name: 거미줄
+                            MetalDesk:
+                                name: 철제 책상
+                                init:
+                                    hide:
+                                verbs:
+                                    Touch:
+                                        name: 더듬다
+                                        onlyif: object-has-flag StagingArea dim
+                                        command:
+                                            pattern: "Touch/MetalDesk"
+                                            read: 철제 책상을 만지다.
+                                            do:
+                                                - unhide:
+                                                - "당신은 책상의 모서리부터 더듬어 나가다가 {drawer:이} 있다는 것을 알았다."
+                                                - undescribed:
+                                part:
+                                    Drawer:
+
+                    MiddleOfNowhere:
+                        name: 어딘지 모르는 외딴 곳
+                        desc:
+                            if: player-is-in Truck
+                            then:
+                                - "당신의 트럭은 큰 사와로 선인장에 정면으로 충돌했다. 그 선인장과 사막의 모래만이 당신 트럭의 앞유리를 통해서 보이는 전부이다."
+                                -
+                                    if: is-first-time
+                                    then:
+                                        "맙소사, 차는 도로 밖으로 튀어나와 부딪힌 것 같다. 오션은 오늘 밤에 이 외딴 고속도로를 통해 돌아가는 것은 위험하다고 걱정했었다. 이제 그녀의 말을 좀 들어야 할 것 같다."
+                                    else:
+                                        - "남쪽에서 이어진 타이어 자국은 갑자기 이곳에 멈춰져 있었다. 여기는 도대체 어디쯤일까?"
+                                        - ExplainLightingCondition
+                        exits:
+                            north: CrumblingConcrete
+                        things:
+                            Lizard:
+                                name: 도마뱀
+                                appearance:
+                                    if: player-is-in Truck
+                                    then:
+                                        "{Truck}의 앞 유리를 통해서 작은 {Lizard:이} 급하게 선인장에 매달리는 것이 보인다."
+                                    else:
+                                        "갈색의 {Lizard:이} 선인장에 매달려 있다.갈색의 {Lizard:이} 선인장에 매달려 있다."
+                                desc:
+                                    onebyone:
+                                        do:
+                                            "그 녀석은 당신이 자기의 선인장을 망쳐버려서 꽤 화가 나 있는 것 같다. 할머니가 저 작은 녀석들을 뭐라고 말했더라? 더 이상 생각이 나지 않는다."
+                                        do:
+                                            "그래, 기억난다. 할머니는 저녀석을 '샌드댄서(Sand-dancer)'라고 불렀다. 작은 샌드댄서는 아직도 화가 나있는 것 같다."
+                                        do:
+                                            "작은 샌드댄서는 가늘고 긴 눈으로 당신을 바라보고 있다."
+                            Saguaro:
+                                name: 사와로 선인장
+                                desc: 그 선인장은 끄떡없이 서있다.
+                            Truck:
+                                name: Truck
+                                appearance: "당신의 오래된 {Truck:은} 큰 선인장에 부딪혀 꼴사납게 덜컹거리고 있다. 뿜어져 나오는 휘발유의 냄새가 차가운 공기 중에 퍼지고 있다."
+                                desc:
+                                    if: player-is-in Truck
+                                    then:
+                                        "차는 얼마나 망가진걸까? 차 안에서는 잘 알 수가 없다."
+                                    else:
+                                        if: is-first-time
+                                        then: "차가운 모래위로 무릎을 꿇고, 아래를 보았다. 예상대로 연료관이 찢어져서 연료가 다 새나가 버렸다."
+                                        else: "연료관을 때우고 연료를 다시 채울 수 있다면, 다시 움직이는 것을 기대할 수 있지 않을까?"
+                                verbs:
+                                    TurnKey:
+                                        name: 시동을 걸다
+                                        command:
+                                            pattern: "TurnKey/{_this_}"
+                                            read: "{_this_}의 시동을 걸다"
+                                            do: "당신의 {Truck:은} 어디도 갈 수없는 상태이다."
+
+                                transparent:
+                                opening:
+                                    openmsg: "{truck}의 문은 삐걱거리는 소리를 내며 열렸다."
+                                    closemsg: "{truck}의 문은 쾅 하는 소리를 내며 닫혔다."
+                                container:
+                                    enterable:
+                                    things:
+                                        Knock:
+                                        Jade:
+                                            name: 옥조각
+                                            desc:
+                                            - "할머니는 이것이 행운을 가져다 줄 것이라고 말했지만, 별로 그렇지는 못했다. 당신은 이제 트럭이 어떻게 망가졌는지 기억나지도 않는다. 어느날 행운이라는 것이 찾아온다면 이것을 그 녀석에게 던져 버려야겠다."
+                                            -
+                                                if: not thing-is-in GrandmaStories EmotionalBaggage
+                                                then:
+                                                    - movethingto: GrandmaStories EmotionalBaggage
+                                                    - newpara:
+                                                    - "이것은 할머니의 이야기에 대한 {EmotionalBaggage:이} 나게했다."
+                                            takable:
+                                            verbs:
+                                                Throw:
+                                        GloveBox:
+                                            name: 글러브 박스
+                                            container:
+                                                things:
+                                                    Cigarettes:
+                                parts:
+                                    WindShield:
+                                        name: 바람막이 창
+                                    Headlights:
+                                        name: 헤드라이트
+                                        switch:
+                                            init:
+                                                on:
+                                            afteron:
+                                            - "사막은 당신 주위에 몸을 드러내었다."
+                                            -
+                                                withspaces: WithinRangeOfHeadlights
+                                                do:
+                                                    lighten:
+                                            afteroff:
+                                            -
+                                                withspaces: WithinRangeOfHeadlights
+                                                do:
+                                                    darken:
+                                            -
+                                                if:
+                                                    and:
+                                                    - thing-switch-on Flashlight
+                                                    - thing-is-in-player-space Flashlight
+                                                then: "손전등의 작은 불빛만이 어슴프레 빛나고 있다."
+                                                else: "완전한 어둠이 집어삼키듯 당신을 에워쌌다."
+                                    FuelLine:
+                                        name: 연료관
+
+
+                    CrumblingConcrete:
+                        name: 부서진 콘코리트 건물
+                        desc:
+                        - "모래와 창백한 산쑥 수풀만이 보이고 있다."
+                        -
+                            if: LitByHeadlights
+                            then:
+                                "{CrackedGlass:가} 당신 차의 {headlights}에 의해 희미하게 빛나고 있다."
+                            else:
+                                if: LitByFlashLight
+                                then: "당신의 손전등 불빛에 죽은 것 같은 적막함이 비춰졌다."
+                        - "동쪽으로는 {BoardedUpDoor:을} 향해 길게 늘어진 모래 줄기가 안쪽으로 인도하고 있다."
+                        exits:
+                            west: WeedStrewnRust
+                            east:
+                                BoardedUpDoor:
+                                    name: 판자 쳐진 문
+                                    init:
+                                        undescribed:
+                                    opening:
+                                        beforeopen:
+                                        - "문은 꿈쩍도 하지 않는다. 당신은 좌절감에 문을 세차게 두드렸다."
+                                        -
+                                            if: not thing-is-opened CrackedGlass
+                                            then:
+                                                "옆에 있는 {CrackedGlass:이} 부르르 떨렸다."
+                                        - stop:
+                        parts:
+                            CrackedGlass:
+                                name: "금이 간 유리창"
+                                desc:
+                                    if: not thing-is-opened CrackedGlass
+                                    then:
+                                        "먼지가 잔뜩 낀 유리창이다."
+                                    else:
+                                        "유리는 깨지고 빈 창틀만이 남아있다."
+                                opening:
+                                    enterto: StagingArea
+                                    beforeopen:
+                                        if: action-by-user
+                                        then:
+                                        - "열리지 않는다. 이 창문은 녹슨 채로 몇 년간이나 굳게 닫혀 있었던 것 같다."
+                                        - stop:
+                                    enterable:
+                                    fixopenclose:
+
+                    WeedStrewnRust:
+                        name: "잡초가 널부러져 있는 폐허"
+
+                    BaseOfTheTower:
+                        name: 타워 아래
+                        exits:
+                            south: CrumblingConcrete
+
+
+
+
