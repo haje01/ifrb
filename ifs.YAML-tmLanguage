@@ -1,0 +1,147 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: IFSTORY
+scopeName: source.ifs
+fileTypes: [ifs]
+uuid: B0C44228-4F1F-11DA-AFF2-000A95AF0064
+
+patterns:
+- include: '#story'
+
+repository:
+  story:
+    patterns:
+    - include: '#info'
+    - include: '#init'
+    - include: '#funcs'
+    - include: '#things'
+    - include: '#verbs'
+    - include: '#spaces'
+    - include: '#section'
+    - include: '#control'
+    - include: '#logistic'
+    - include: '#door'
+    - include: '#line'
+    - include: '#comment'
+
+  info:
+    name: constant.character.ifs
+    match: \b(title|subtitle|author|coverart|description|beforebanner|banner|subbanner|afterbanner)(:)
+    patterns:
+    - include: '#dstring'
+    - include: '#sstring'
+
+  funcs:
+    patterns:
+    - include: '#deffunc'
+
+  deffunc:
+    match: \!(\p{Word}+)(:)
+    name: entity.name.function
+    captures:
+      '0': {name: variable.parameter.ifs}
+
+  section:
+    name: entity.name.section.ifs
+    match: ^\s*(info|funcs|things|spaces|rooms|init|verbs|desc|parts|exits|container|light|switch|opening|beforeon|afteron|beforeoff|afteroff|beforeopen|afteropen|beforeclose|afterclose|command|read|pattern|action|onlyif|label|name|takable|wearable|enterable|openmsg|closemsg|takemsg|appearance|north|east|west|south|up|down|northdoor|eastdoor|westdoor|southdoor|updoor|downdoor|out|beforeexit|afterexit|to)(:)
+
+  control:
+    begin: \b(if|elif|then|else|onebyone|do|with|withthings|withspaces)(:)
+    beginCaptures:
+      '1': {name: keyword.control.ifs}
+    end: $
+    patterns:
+    - include: '#line'
+
+  logistic:
+    begin: \b(and|or)(:)
+    beginCaptures:
+      '1': {name: keyword.control.ifs}
+    end: $
+    patterns:
+    - include: '#predicate'
+    - include: '#ref_var'
+
+  line:
+    patterns:
+    - include: '#predicate'
+    - include: '#linecommand'
+    - include: '#negate'
+    - include: '#ref_var'
+    - include: '#dstring'
+    - include: '#sstring'
+
+  predicate:
+    patterns:
+    - begin: \b(object-count-compare|object-has-flag|thing-is-in-player-space|the-space-is-dark|the-thing-is-in|the-thing-is-visible|the-space-is|the-thing-is-held|the-thing-is-handled|thing-switch-on|player-is-in|thing-is-open|thing-is-in|player-has|action-by-user|is-first-time)
+      end: \s
+      name: constant.language.ifs
+      patterns:
+      - match: ':'
+        name: invalid.ifs
+
+  linecommand:
+    begin: \b(hide|unhide|described|undescribed|handled|goto|open|close|fixopenclose|stop|on|off|movethingto|setcount|inccount|deccount|unsetcount|para|darken|lighten|setflag|unsetflag|settransparent|setopaque|setplayer|do|ref|look|setname)
+    beginCaptures:
+      '1': {name: support.function.ifs}
+    end: $
+    patterns:
+    - match: (:)
+      name: invalid
+    - include: '#predicate'
+    - include: '#negate'
+    - include: '#ref_var'
+    - include: '#dstring'
+    - include: '#sstring'
+
+  ref_var:
+    name: meta.tag.ifs
+    match: \@(\p{Word}+)
+    captures:
+      '0': {name: variable.parameter.ifs}
+
+  sref_var:
+    name: meta.tag.ifs
+    match: \@(\p{Word}+)(\.|:)?(\p{Word}+)?
+    captures:
+      '1': {name: variable.parameter.ifs}
+      '2': {name: keyword.operator.symbol}
+      '3': {name: support.constant.ifs}
+
+  negate:
+    begin: \b(not)\b
+    beginCaptures:
+      '0': {name: support.function.ifs}
+    end: $
+    patterns:
+    - include: '#predicate'
+    - include: '#ref_var'
+
+  dstring:
+    name: string.quoted.double.ifs
+    begin: '"'
+    beginCaptures:
+      '0': {name: punctuation.definition.string.begin.ifs}
+    end: '"'
+    endCaptures:
+      '0': {name: punctuation.definition.string.end.ifs}
+    patterns:
+    - include: '#escaped_char'
+    - include: '#sref_var'
+
+  sstring:
+    name: string.quoted.single.ifs
+    begin: "'"
+    beginCaptures:
+      '0': {name: punctuation.definition.string.begin.ifs}
+    end: "'"
+    endCaptures:
+      '0': {name: punctuation.definition.string.end.ifs}
+    patterns:
+    - include: '#escaped_char'
+    - include: '#sref_var'
+
+  comment:
+    name: comment.line.number-sign.ifs
+    match: (?<!\$)(#)(?!\{).*$\n?
+    captures:
+      '1': {name: punctuation.definition.comment.ifs}
